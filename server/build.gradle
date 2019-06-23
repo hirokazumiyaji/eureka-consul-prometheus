@@ -1,0 +1,4 @@
+dependencies {
+    implementation "com.netflix.servo:servo-core:0.12.27"
+    implementation "org.springframework.cloud:spring-cloud-starter-netflix-eureka-server"
+}

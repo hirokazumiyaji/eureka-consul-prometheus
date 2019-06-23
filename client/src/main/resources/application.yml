@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: client
+
+server:
+  port: 8080
+
+management:
+  server:
+    port: 28080
+  endpoints:
+    web:
+      base-path: /management
+
+eureka:
+  instance:
+    app-group-name: eureka
+    status-page-url-path: /management/info
+    health-check-url-path: /management/health
+    metadata-map:
+      env: local

@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: server
+
+server:
+  port: 8080
+
+management:
+  server:
+    port: 28080
+  endpoints:
+    web:
+      base-path: /management
+
+eureka:
+  instance:
+    metadata-map:
+      env: local
