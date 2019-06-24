@@ -1,41 +1,53 @@
 version: "3"
 services:
+  prometheus:
+    image: prom/prometheus:v2.10.0
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+    depends_on:
+      - server-1
+      - server-2
   server-1:
     image: openjdk:11.0-jdk-stretch
     command: ./server.sh
     working_dir: /usr/local/src/app
     environment:
       - SERVER_PORT=8080
+      - MANAGEMENT_SERVER_PORT=28080
       - EUREKA_SERVICE_URL=http://server-1:8080/eureka/,http://server-2:8081/eureka/
     volumes:
       - ./:/usr/local/src/app
     ports:
       - 8080:8080
-      - 28080
+      - 28080:28080
   server-2:
     image: openjdk:11.0-jdk-stretch
     command: ./server.sh
     working_dir: /usr/local/src/app
     environment:
       - SERVER_PORT=8081
+      - MANAGEMENT_SERVER_PORT=28081
       - EUREKA_SERVICE_URL=http://server-1:8080/eureka/,http://server-2:8081/eureka/
     volumes:
       - ./:/usr/local/src/app
     ports:
       - 8081:8081
-      - 28080
+      - 28081:28081
   client-1:
     image: openjdk:11.0-jdk-stretch
     command: ./client.sh
     working_dir: /usr/local/src/app
     environment:
       - SERVER_PORT=8082
-      - EUREKA_SERVICE_URL=http://server-1:8080/eureka/
+      - MANAGEMENT_SERVER_PORT=28082
+      - EUREKA_SERVICE_URL=http://server-1:8080/eureka/,http://server-2:8081/eureka/
     volumes:
       - ./:/usr/local/src/app
     ports:
       - 8082:8082
-      - 28080
+      - 28082:28082
     depends_on:
       - server-1
       - server-2
@@ -45,12 +57,13 @@ services:
     working_dir: /usr/local/src/app
     environment:
       - SERVER_PORT=8083
-      - EUREKA_SERVICE_URL=http://server-1:8080/eureka/
+      - MANAGEMENT_SERVER_PORT=28083
+      - EUREKA_SERVICE_URL=http://server-1:8080/eureka/,http://server-2:8081/eureka/
     volumes:
       - ./:/usr/local/src/app
     ports:
       - 8083:8083
-      - 28080
+      - 28083:28083
     depends_on:
       - server-1
       - server-2
@@ -60,12 +73,13 @@ services:
     working_dir: /usr/local/src/app
     environment:
       - SERVER_PORT=8084
-      - EUREKA_SERVICE_URL=http://server-1:8080/eureka/
+      - MANAGEMENT_SERVER_PORT=28084
+      - EUREKA_SERVICE_URL=http://server-1:8080/eureka/,http://server-2:8081/eureka/
     volumes:
       - ./:/usr/local/src/app
     ports:
       - 8084:8084
-      - 28080
+      - 28084:28084
     depends_on:
       - server-1
       - server-2

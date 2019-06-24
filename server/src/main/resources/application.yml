@@ -14,5 +14,6 @@ management:
 
 eureka:
   instance:
+    app-group-name: eureka
     metadata-map:
-      env: local
+      environment: local

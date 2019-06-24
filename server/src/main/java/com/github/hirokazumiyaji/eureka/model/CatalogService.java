@@ -1,6 +1,9 @@
 package com.github.hirokazumiyaji.eureka.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.AllArgsConstructor;
@@ -21,9 +24,9 @@ public class CatalogService {
     @JsonProperty("Datacenter")
     String datacenter;
     @JsonProperty("TaggedAddress")
-    Map<String, String> taggedAddresses;
+    Map<String, String> taggedAddresses = new HashMap<>();
     @JsonProperty("NodeMeta")
-    Map<String, String> nodeMeta;
+    Map<String, String> nodeMeta = new HashMap<>();
     @JsonProperty("ServiceID")
     String serviceID;
     @JsonProperty("ServiceName")
@@ -31,9 +34,9 @@ public class CatalogService {
     @JsonProperty("ServiceAddress")
     String serviceAddress;
     @JsonProperty("ServiceTags")
-    List<String> serviceTags;
+    List<String> serviceTags = new ArrayList<>();
     @JsonProperty("ServiceMeta")
-    Map<String, String> serviceMeta;
+    Map<String, String> serviceMeta = new HashMap<>();
     @JsonProperty("ServicePort")
     int servicePort;
     @JsonProperty("ServiceEnableTagOverride")

@@ -18,4 +18,4 @@ eureka:
     status-page-url-path: /management/info
     health-check-url-path: /management/health
     metadata-map:
-      env: local
+      environment: local
