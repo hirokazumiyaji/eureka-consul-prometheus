@@ -1,6 +1,8 @@
 spring:
   application:
     name: server
+  profiles:
+    active: PRODUCTION
 
 server:
   port: 8080
@@ -11,9 +13,16 @@ management:
   endpoints:
     web:
       base-path: /management
+      exposure:
+        include: ["*"]
 
 eureka:
   instance:
     app-group-name: eureka
+    status-page-url-path: /management/prometheus
     metadata-map:
       environment: local
+    hostname:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka/

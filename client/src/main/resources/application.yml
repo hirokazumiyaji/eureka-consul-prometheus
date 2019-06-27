@@ -11,11 +11,14 @@ management:
   endpoints:
     web:
       base-path: /management
+      exposure:
+        include: *
 
 eureka:
   instance:
+    hostname: localhost
     app-group-name: eureka
-    status-page-url-path: /management/info
+    status-page-url-path: /management/prometheus
     health-check-url-path: /management/health
     metadata-map:
       environment: local

@@ -83,6 +83,7 @@ public class DiscoveryService {
                 .filter(it -> !it.getKey().equals(MANAGEMENT_PORT_META))
                 .collect(Collectors.toMap(Entry::getKey, Entry::getValue));
         meta.putIfAbsent("group", instanceInfo.getAppGroupName());
+        meta.putIfAbsent("hostname", instanceInfo.getHostName());
         service.setServiceMeta(meta);
         return service;
     }

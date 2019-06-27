@@ -40,6 +40,7 @@ allprojects {
         implementation "org.springframework.boot:spring-boot-starter-actuator"
         implementation "org.springframework.boot:spring-boot-starter-webflux"
         implementation "org.springframework.cloud:spring-cloud-starter-netflix-eureka-server"
+        implementation "io.micrometer:micrometer-core:1.1.4"
         implementation "io.micrometer:micrometer-registry-prometheus:1.1.4"
         compileOnly "org.projectlombok:lombok"
         developmentOnly "org.springframework.boot:spring-boot-devtools"
